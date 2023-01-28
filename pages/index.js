@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
 
       <main>
-        
+        <h1>This is my BLOG</h1>
       </main>
     </div>
   )
