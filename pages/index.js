@@ -15,7 +15,7 @@ const Home = ({ posts }) => {
       </Head>
       <Layout>
         <main>
-          
+          {posts.map((post) => <h1 key={post.title}>{post.title}</h1>)}
         </main>
       </Layout>
     </div>
