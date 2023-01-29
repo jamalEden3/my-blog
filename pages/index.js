@@ -3,7 +3,10 @@ import styles from '../styles/Home.module.css';
 
 import Layout from '../components/Layout';
 
-export default function Home() {
+import { getPosts } from '../lib/firebase.config';
+
+const Home = ({ posts }) => {
+  console.log(posts)
   return (
     <div className={styles.container}>
       <Head>
@@ -18,3 +21,15 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getServerSideProps() {
+  const posts = await getPosts();
+
+  return {
+    props: {
+      posts
+    }
+  }
+}
+
+export default Home;
