@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
 import Layout from '../components/Layout';
+import Hero from '../components/Hero';
 
 import { getPosts } from '../lib/firebase.config';
 
@@ -15,14 +16,14 @@ const Home = ({ posts }) => {
       </Head>
       <Layout>
         <main>
-          {posts.map((post) => <h1 key={post.title}>{post.title}</h1>)}
+          <Hero />
         </main>
       </Layout>
     </div>
   )
 }
 
-export async function getServerSideProps() {
+/* export async function getServerSideProps() {
   const posts = await getPosts();
 
   return {
@@ -31,5 +32,5 @@ export async function getServerSideProps() {
     }
   }
 }
-
+ */
 export default Home;

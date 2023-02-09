@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
 
-function posts() {
+import Layout from '../../components/Layout';
+import { getPosts } from '../../lib/firebase.config';
+
+function posts({ posts }) {
   return (
-    <div>posts</div>
+    <Layout>
+      {posts.map((post)=> <h1 key={post.title}>{post.title}</h1>)}
+    </Layout>
   )
 }
 
+
+export async function getServerSideProps() {
+  const posts = await getPosts();
+
+  return {
+    props: {
+      posts
+    }
+  }
+}
 export default posts
