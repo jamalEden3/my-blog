@@ -4,8 +4,13 @@ import logo from '../public/logo.svg'
 import Image from 'next/image';
 import { CgClose } from 'react-icons/cg';
 import { HiMenuAlt3 } from 'react-icons/hi';
+import { useAuth } from '../context/userAuth';
+import { signOut } from '../lib/firebase.config';
+
 
 function Header() {
+  
+  const [userAuth] = useAuth();
   const [navOpen, setnavOpen] = useState(false);
   const handleNav = () => {
     setnavOpen(!navOpen)
@@ -36,6 +41,9 @@ function Header() {
               </li>
               <li className='ml-10 text-sm uppercase hover:border-b'>
                 <Link href="/">Rss</Link>
+              </li>
+              <li className='ml-10 text-sm uppercase hover:border-b'>
+                {userAuth ? <button onClick={signOut}>Hi jamal, signout</button> : <Link href={'/sign-in'}>SignIn</Link>}
               </li>
             </ul>
     

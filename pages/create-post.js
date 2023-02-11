@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
+import { useAuth } from '../context/userAuth';
 
 
 import { createPost } from '../lib/firebase.config';
 
 function CreatePost() {
+   const [userAuth ,userLoading ]= useAuth();
+
+
     const router = useRouter();
     const [postValues, setPostValues] = useState({
         title: '',

@@ -3,10 +3,11 @@ import styles from '../styles/Home.module.css';
 
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
-
-import { getPosts } from '../lib/firebase.config';
+import { useAuth } from '../context/userAuth';
 
 const Home = ({ posts }) => {
+
+  const [userAuth] = useAuth();
   console.log(posts)
   return (
     <div className={styles.container}>
