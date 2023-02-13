@@ -3,11 +3,11 @@ import styles from '../styles/Home.module.css';
 
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
-import { useAuth } from '../context/userAuth';
+import { userAuth } from '../context/userAuth';
 
 const Home = ({ posts }) => {
 
-  const [userAuth] = useAuth();
+  const [user] = userAuth();
   console.log(posts)
   return (
     <div className={styles.container}>

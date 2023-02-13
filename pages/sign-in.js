@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
-import { useAuth } from '../context/userAuth';
+import { userAuth } from '../context/userAuth';
 import { signIn } from '../lib/firebase.config';
 
 function SignIn() {
-   const [userAuth ,userLoading,  ]= useAuth();
-   /* console.log(userAuth) */
+   const [user ,userLoading ]= userAuth();
+
     const router = useRouter();
     const [userValues, setUserValues] = useState({
         email: '',
@@ -19,13 +19,12 @@ function SignIn() {
         ) 
     }
 
-    if(userAuth && typeof window !==undefined) {
-        router.push('/');
-        return null
+    if(user.uid && typeof window !==undefined) {
+        router.push('/create-post');
+        return null;
     }
 
     const handleChange = (event) => {
-        console.log('as')
         const id = event.target.id;
         const updatedValue = event.target.value
         setUserValues({...userValues, [id]: updatedValue});
@@ -48,6 +47,7 @@ function SignIn() {
         signIn(userValues.email, userValues.password).catch((err) => {
             alert(err);
         });
+        
     };
 
 

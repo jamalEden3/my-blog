@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
-import { useAuth } from '../context/userAuth';
+import RouteGuard from '../components/RouteGuard';
 
 
 import { createPost } from '../lib/firebase.config';
 
 function CreatePost() {
-   const [userAuth ,userLoading ]= useAuth();
-
-
-    const router = useRouter();
     const [postValues, setPostValues] = useState({
         title: '',
         slug: '',
@@ -56,40 +52,42 @@ function CreatePost() {
 
   return (
     <Layout>
-        <form onSubmit={handleSubmit}>
-            <h1>Create New Post</h1>
-            <div>
-                <label htmlFor='title'>Title</label>
-                <input 
-                    type='text'
-                    placeholder='Type the title'
-                    id="title"
-                    value={postValues.title}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor='slug'>slug</label>
-                <input 
-                    type='text'
-                    placeholder='Type the slug'
-                    id="slug"
-                    value={postValues.slug}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor='content'>content</label>
-                <textarea 
-                    type='text'
-                    placeholder='Type the content'
-                    id="content"
-                    value={postValues.content}
-                    onChange={handleChange}
-                />
-            </div>
-            <button type="submit" className='text-alertClr'>{isLoading ? 'Creating ...' : 'Create'}</button>
-        </form>
+        <RouteGuard>
+            <form onSubmit={handleSubmit}>
+                <h1>Create New Post</h1>
+                <div>
+                    <label htmlFor='title'>Title</label>
+                    <input 
+                        type='text'
+                        placeholder='Type the title'
+                        id="title"
+                        value={postValues.title}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='slug'>slug</label>
+                    <input 
+                        type='text'
+                        placeholder='Type the slug'
+                        id="slug"
+                        value={postValues.slug}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <label htmlFor='content'>content</label>
+                    <textarea 
+                        type='text'
+                        placeholder='Type the content'
+                        id="content"
+                        value={postValues.content}
+                        onChange={handleChange}
+                    />
+                </div>
+                <button type="submit" className='text-alertClr'>{isLoading ? 'Creating ...' : 'Create'}</button>
+            </form>
+        </RouteGuard>
     </Layout>
   )
 }
