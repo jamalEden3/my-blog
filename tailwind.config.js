@@ -11,7 +11,10 @@ module.exports = {
     },
     colors: {
       textClr: '#0a0c10',
+      ClrGreen: '#1d7023',
+      ClrOrg: '#fdb30d',
       backgroundClr: '#ffffff',
+      backgroundDark: '#000',
       backgroundPage: '#e8f5f9',
       primaryClr: '#4433ff',
       secondaryClr: '#e60067',

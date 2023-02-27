@@ -4,6 +4,9 @@ import logo from '../public/logo.svg'
 import Image from 'next/image';
 import { CgClose } from 'react-icons/cg';
 import { HiMenuAlt3 } from 'react-icons/hi';
+import { BsSunFill } from 'react-icons/bs';
+import { FiRss } from 'react-icons/fi';
+
 import { userAuth } from '../context/userAuth';
 import { signOut } from '../lib/firebase.config';
 
@@ -11,7 +14,6 @@ import { signOut } from '../lib/firebase.config';
 function Header() {
   
   const [user] = userAuth();
-  console.log(user.email)
   const [navOpen, setnavOpen] = useState(false);
   const handleNav = () => {
     setnavOpen(!navOpen)
@@ -23,29 +25,34 @@ function Header() {
           <Link href="/" className='flex items-center'>
             <Image 
               src={logo}
-              height={30}
-              width={30}
-              alt="logo"className='mr-1'
+              height={160}
+              width={160}
+              alt="logo"
+              className='border-grey900'
             />
-            <span className='text-2xl'>myPen</span>
+            {/* <span className='text-2xl'>jamal</span> */}
           </Link>
-          <nav className=''>
+          <nav className='border-grey900'>
             <ul className='hidden md:flex'>
-              <li className='ml-10 text-sm uppercase hover:border-b'>
-                <Link href="/posts">Posts</Link>
+              <li className='text-sm ml-10 uppercase'>
+                <Link className='hover:border-b-2' href="/posts">Posts</Link>
               </li>
-              <li className='ml-10 text-sm uppercase hover:border-b'>
-                <Link href="/">Snippets</Link>
+              <li className='text-sm ml-10 uppercase'>
+                <Link className='hover:border-b-2' href="/">Snippets</Link>
               </li>
-              <li className='ml-10 text-sm uppercase hover:border-b'>
-                <Link href="/">Latest</Link>
+              <li className='text-sm ml-10 uppercase'>
+                <Link className='hover:border-b-2' href="/">Latest</Link>
               </li>
-              <li className='ml-10 text-sm uppercase hover:border-b'>
-                <Link href="/">Rss</Link>
-              </li>
-              <li className='ml-10 text-sm uppercase hover:border-b'>
-                {user.uid ? <button onClick={signOut}>Hi jamal, signout</button> : <Link href={'/sign-in'}>SignIn</Link>}
-              </li>
+              {
+                user.uid ? (
+                  <li className='ml-10 text-sm uppercase hover:border-b'>
+                    {user.uid ? <button onClick={signOut}>Hi jamal, signout</button> : <Link href={'/sign-in'}>SignIn</Link>}
+                  </li>
+                ) : (
+                  <p></p>
+                )
+              }
+              
             </ul>
     
             {/* mobile menu */}
@@ -53,6 +60,18 @@ function Header() {
               <HiMenuAlt3 size={25}/>
             </div>
           </nav>
+          <ul className='flex gap-5'>
+              <li>
+                <button>
+                  <BsSunFill />
+                </button>
+              </li>
+              <li>
+                <button>
+                  <FiRss />
+                </button>
+              </li>
+            </ul>
       </div>
 
         {/* mobile menu */}
@@ -68,11 +87,10 @@ function Header() {
               <Link href="/" className='flex items-center'>
                 <Image 
                   src={logo}
-                  height={30}
-                  width={30}
+                  height={80}
+                  width={80}
                   alt="logo"className='mr-1'
                 />
-                <span className='text-2xl'>myPen</span>
               </Link>
               <div className='cursor-pointer rounded-full shadow-lg shadow-grey400' onClick={handleNav}>
                 <CgClose size={25} />
@@ -87,9 +105,6 @@ function Header() {
                   <Link href="/">Snippets</Link>
                 </li>
                 <li className='ml-10 text-sm uppercase hover:border-b'>
-                  <Link href="/">Rss</Link>
-                </li>
-                <li className='ml-10 text-sm uppercase hover:border-b'>
                   <Link href="/">Latest</Link>
                 </li>
               </ul>
@@ -101,4 +116,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Header;
