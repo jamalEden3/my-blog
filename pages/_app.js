@@ -1,9 +1,13 @@
 import '../styles/globals.css';
 import { AuthProvider } from '../context/userAuth';
+import Header from '../components/Header';
+
+
 export default function MyApp({ Component, pageProps }) {
     return (
       <AuthProvider>
-        <Component {...pageProps} />
+        <Header />
+          <Component {...pageProps} />
       </AuthProvider>
     )
   }

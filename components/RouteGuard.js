@@ -37,7 +37,7 @@ function RouteGuard({ children }) {
     return isAuthorized ? (
         children
     ) : (
-        <p>please  <Link href={'/sign-in'}>signin first</Link></p>
+        <p>please  <Link href={'/sign-in'} className="text-blackClr text-2xl">signin first</Link></p>
     )
 }
 

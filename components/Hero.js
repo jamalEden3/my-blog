@@ -1,18 +1,31 @@
-import Image from 'next/image';
 import React from 'react';
 import styles  from '../styles/Hero.module.css';
-import HeroImg from '../public/hero.png';
+
+import { RiFacebookBoxLine } from 'react-icons/ri';
+import { SlSocialTwitter } from 'react-icons/sl';
+import { CiLinkedin } from 'react-icons/ci';
+import { FiGithub } from 'react-icons/fi';
+import { BsFillNodePlusFill } from 'react-icons/bs';
 
 
-function Hero() {
+
+
+const Hero = () => {
+
   return (
-    <section id="hero" className='z-10 h-[calc(100vh-6rem)] grid items-center'>
-      <div className='container'>
-        <div className='flex justify-between items-center mx-7'>
-          <div className='flex flex-col justify-between gap-2'>
-            <h1 className='text-4xl mb-4'><span className='capitalize'>Hey! </span><span className='text-8xl bold'>I'm <span className='text-primaryClr'>J</span><span className='text-ClrOrg'>ama</span><span className='text-ClrGreen'>l</span></span></h1>
-            <p className='text-xl text-grey600'>A front-End developer, React || Next.js stack</p>
-            <div className={styles.BtnContainer}>
+    <section id="hero" className='-z-0 basis-2/5'>
+      <div className='flex flex-col pb-5'>
+        <div className='flex flex-col gap-2 relative'>
+          <h1 className='text-lg mb-2'>It's <br/> <span className='text-9xl text-blue'>Jamal</span></h1>
+          <p className='text-xl mb-2'>A front-End developer. </p>
+          <p className='flex items-center'>
+            <span className=' text-orange bg-blue p-4 rounded-lg font-bold text-2xl'>React.js </span> 
+            <BsFillNodePlusFill className='mx-4 text-blue text-8xl' /> 
+            <span className=' text-blue bg-orange p-4 rounded-lg font-bold text-2xl'> Next.js</span>
+            <BsFillNodePlusFill className='mx-4 text-orange text-8xl' /> 
+            <span className=' text-orange bg-blue p-4 rounded-lg font-bold text-2xl'>Node.js </span>
+          </p>
+          <div className={`${styles.BtnContainer} mb-8`}>
               <div></div>
               <div></div>
               <div></div>
@@ -24,25 +37,21 @@ function Hero() {
               <div></div>
               <div></div>
               <p className={styles.BtnBox}>
-                <button className={styles.HireBtn}>
+                <button>
                   Hire Me
                 </button>
               </p>
-            </div>{/* button div */}
-          </div>{/* Hero info */}
-
-          <div className=''>
-            <Image
-              src={HeroImg}
-              width={500}
-              height={500}
-              alt="hero"
-            />
-          </div>{/* Hero image */}
-        </div>{/* Hero div */}
-      </div>{/* container */}
+          </div>{/* button div */}
+          <div className='flex gap-6 mt-4 '>
+              <RiFacebookBoxLine className='text-3xl cursor-pointer hover:text-blue transition-all' />
+              <SlSocialTwitter className='text-3xl cursor-pointer hover:text-blue transition-all' />
+              <CiLinkedin className='text-3xl cursor-pointer hover:text-blue transition-all' />
+              <FiGithub className='text-3xl cursor-pointer hover:text-blue transition-all' />
+          </div>{/* socia; section 2 */}
+        </div>{/* Hero info */}
+      </div>{/* Hero div */}
     </section>
   )
 }
 
-export default Hero
+export default Hero;

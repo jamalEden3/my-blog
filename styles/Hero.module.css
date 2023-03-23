@@ -2,20 +2,22 @@
     position: relative;
     display: grid;
     cursor: pointer;
-    width: 200px;
+    width: 100px;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     margin-top: 3rem;
     margin-left: 1rem;
+    width: 150px;
 }
 
 .BtnBox {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
-    color: var(--white);
-    background: hsl(222, 45%, 7%);
-    padding: 2rem;
+    color: #fff;
+    z-index: 100;
+    background: #002B5B;
+    padding: 1rem;
     border-radius: 1rem;
-    width: 200px;
+    width: 130px;
     text-align: center;
 
     position: relative;
@@ -31,6 +33,7 @@
   z-index: 10;
   position: absolute;
   outline: 0.9rem currentColor;
+  z-index: 1000;
 }
 
 .BtnContainer > div:nth-child(1) {
@@ -105,12 +108,13 @@
     filter: blur(15px);
     opacity: 0.5;
 }
+ 
 
 /* Gradient */
 .BtnBox::after {
     z-index: -2;
     inset: -1rem;
-    background: linear-gradient(-45deg, green, blue);
+    background: linear-gradient(-45deg, #3A98B9,  #EEEEEE);
     transform: translateZ(-50px);
 }
 
@@ -158,7 +162,13 @@
     --rotateX: 25deg;
     --rotateY: -25deg;
   }
-
-.HireBtn {
-    color: white;
-}
+  
+  .BtnBox button{
+    color: #9DC08B;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  .BtnContainer div:hover  ~ .BtnBox button{
+    color: #d6d6f5;
+  }

@@ -1,0 +1,17 @@
+.WaveyBg {
+    --size: 10px;
+    border: 1px solid;
+    background: radial-gradient(var(--size) at 50% 0px,#0000 99%,#9DC08B 101%) 50% var(--size)/calc(4*var(--size)) 100% no-repeat;
+    background-repeat: repeat-x;
+    border: none;
+    }
+
+
+.PostCard {
+    --size: 10px;
+    border: 1px solid;
+    background: radial-gradient(var(--size) at 50% 0px,#0000 99%,#FFB100 101%) 50% var(--size)/calc(4*var(--size)) 100% no-repeat;
+    background-repeat: repeat-x;
+    border: none;
+}
+

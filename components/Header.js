@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+
 import Link from 'next/link';
 import logo from '../public/logo.svg'
 import Image from 'next/image';
@@ -15,33 +16,48 @@ function Header() {
   
   const [user] = userAuth();
   const [navOpen, setnavOpen] = useState(false);
+  const [shadow, setShadow] = useState(false);
+
+  useEffect(() => {
+    const handleShadow = () => {
+      if(window.scrollY >= 80) {
+        setShadow(true);
+      } else {
+        setShadow(false);
+      }
+    }
+    window.addEventListener('scroll', handleShadow);
+    return () => window.removeEventListener('scroll', handleShadow)
+  }, [])
+  
+
   const handleNav = () => {
     setnavOpen(!navOpen)
   }
 
   return (
-    <header className='fixed w-full h-20 shadow-xl z-[100] border-grey900'>
-      <div className='flex justify-between items-center w-full h-full px-8 2xl:px-16'>
-          <Link href="/" className='flex items-center'>
-            <Image 
+    <header className={shadow ? ' transition-all bg-transparent fixed top-0 left-0 w-full h-20 shadow-xl bg-lighter z-[100]' : ' bg-lighter transition-all bg-transparent fixed top-0 left-0 w-full h-20 z-[100]'}>
+      <div className='flex justify-between items-center w-full h-full 2xl:px-10 container'>
+          <Link href="/" className='flex items-center w-48'>
+            {/* <Image 
               src={logo}
               height={160}
               width={160}
               alt="logo"
               className='border-grey900'
-            />
-            {/* <span className='text-2xl'>jamal</span> */}
+            /> */}
+            <h2 className='text-3xl tracking-widest text-blue font-semibold'>The<span className='text-orange'>D</span>ozy;</h2>
           </Link>
-          <nav className='border-grey900'>
-            <ul className='hidden md:flex'>
-              <li className='text-sm ml-10 uppercase'>
-                <Link className='hover:border-b-2' href="/posts">Posts</Link>
+          <nav className=''>
+            <ul className='hidden md:flex justify-around gap-5'>
+              <li className=''>
+                <Link className='text-base font-medium hover:border-b-2 hover:text-bgClr' href="/posts">Posts</Link>
               </li>
-              <li className='text-sm ml-10 uppercase'>
-                <Link className='hover:border-b-2' href="/">Snippets</Link>
+              <li className=''>
+                <Link className='text-base font-medium hover:border-b-2 hover:text-bgClr' href="/">Snippets</Link>
               </li>
-              <li className='text-sm ml-10 uppercase'>
-                <Link className='hover:border-b-2' href="/">Latest</Link>
+              <li className=''>
+                <Link className='text-base font-medium hover:border-b-2 hover:text-bgClr' href="/">Latest</Link>
               </li>
               {
                 user.uid ? (
@@ -52,26 +68,21 @@ function Header() {
                   <p></p>
                 )
               }
-              
-            </ul>
-    
+              </ul>
             {/* mobile menu */}
             <div className='md:hidden cursor-pointer' onClick={handleNav}>
               <HiMenuAlt3 size={25}/>
             </div>
           </nav>
-          <ul className='flex gap-5'>
-              <li>
-                <button>
-                  <BsSunFill />
-                </button>
-              </li>
-              <li>
-                <button>
-                  <FiRss />
-                </button>
-              </li>
-            </ul>
+
+          <div className='w-48 hidden md:flex justify-end gap-5 items-center opacity-60'>
+            <button>
+              <BsSunFill className='text-lg'/>
+            </button>
+            <button>
+              <FiRss className='text-lg'/>
+            </button>
+          </div>
       </div>
 
         {/* mobile menu */}
@@ -109,6 +120,14 @@ function Header() {
                 </li>
               </ul>
             </nav>
+            <div className='flex justify-between items-center w-4 gap-4'>
+            <button>
+              <BsSunFill />
+            </button>
+            <button>
+              <FiRss />
+            </button>
+          </div>
           </div>
         </div>
       </div>

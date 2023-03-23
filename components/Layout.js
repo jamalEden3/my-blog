@@ -5,12 +5,12 @@ import Footer from './Footer';
 
 function Layout({ children }) {
   return (
-    <div>
-        <Header />
-        <div className="pt-24">
-          {children}
+    <div className='bg-grey100 mx-auto'>
+        <div className='container overflow-hidden'>
+          {/* <Header /> */}
+            {children}
+          {/* <Footer /> */}
         </div>
-        {/* <Footer /> */}
     </div>
   )
 }
